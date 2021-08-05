@@ -7,7 +7,7 @@ def onMessage(client, userdata, msg):
     print(msg.topic + ": " + msg.payload.decode())
 
 client = paho.Client()
-client.on_message = onMessage()
+client.on_message = onMessage
 
 if client.connect("localhost", 1883, 60) != 0:
     print("Could not connect to MQTT Broker!")
