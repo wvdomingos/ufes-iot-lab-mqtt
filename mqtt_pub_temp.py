@@ -9,13 +9,13 @@ import sys
 
 # Localização do Broker
 # mqttBroker = "mqtt.eclipseprojects.io"
-mqttBroker = "'localhost', 1883, 60"
+mqttBroker = "localhost"
 
 # Identificando o Cliente 
-client = mqtt.Client("Temperature_Inside")
+client = paho.Client("Temperature_Inside")
 
 # Conexão do Broker
-if client.connect(mqttBroker) != 0:
+if client.connect(mqttBroker, 1883, 60) != 0:
     print("Could not connect to MQTT Broker!")
     sys.exit(-1)
 

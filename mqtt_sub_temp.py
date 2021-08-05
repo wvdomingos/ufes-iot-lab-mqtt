@@ -12,16 +12,24 @@ def on_message(client, userdata, message):
 
 # Localização do Broker
 # mqttBroker = "mqtt.eclipseprojects.io"
-mqttBroker = "'localhost', 1883, 60"
-client = mqtt.Client("Smartphone")
+mqttBroker = "localhost"
+client = paho.Client("Smartphone")
+client.on_message = on_message
 
 # Conexão do Broker
-if client.connect(mqttBroker) != 0:
+if client.connect(mqttBroker, 1883, 60) != 0:
     print("Could not connect to MQTT Broker!")
     sys.exit(-1)
 
-client.loop_start()
 client.subscribe("TEMPERATURE")
-client.on_message = on_message
-time.sleep(30)
-client.loop_end()
+
+try:
+    print("Press CTRL+C to exit...")
+    #client.loop_start()
+    client.loop_forever()
+    #time.sleep(30)
+    #client.loop_end()
+except:
+    print("Disconnecting from broker")
+
+client.disconnect()
