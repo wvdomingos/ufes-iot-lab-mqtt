@@ -15,7 +15,7 @@ mqttBroker = "localhost"
 client = paho.Client("Temperature_Inside")
 
 # Conexão do Broker
-if client.connect(mqttBroker, 1883, 60) != 0:
+if client.connect(mqttBroker, 8883, 60) != 0:
     print("Could not connect to MQTT Broker!")
     sys.exit(-1)
 
